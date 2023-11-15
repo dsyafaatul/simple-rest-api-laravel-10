@@ -54,4 +54,23 @@ class PostsController extends Controller
             }
         }
     }
+
+    public function show($id)
+    {
+        $post = Post::whereId($id)->first();
+
+        if($post){
+            return response()->json([
+                "status" => true,
+                "message" => "Detail Post!",
+                "data" => $post
+            ], 200);
+        }else{
+            return response()->json([
+                "status" => true,
+                "message" => "Post tidak ditemukan!",
+                "data" => $post
+            ], 401);
+        }
+    }
 }
