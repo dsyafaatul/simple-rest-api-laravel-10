@@ -22,3 +22,4 @@ Route::post("/v1/posts/store", "App\Http\Controllers\api\\v1\PostsController@sto
 Route::get("/v1/posts", "App\Http\Controllers\api\\v1\PostsController@index");
 Route::get("/v1/posts/{id}", "App\Http\Controllers\api\\v1\PostsController@show");
 Route::post("/v1/posts/update", "App\Http\Controllers\api\\v1\PostsController@update");
+Route::post("/v1/posts/destroy/{id}", "App\Http\Controllers\api\\v1\PostsController@destroy");

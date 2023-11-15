@@ -109,4 +109,22 @@ class PostsController extends Controller
             }
         }
     }
+
+    public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        if($post){
+            return response()->json([
+                "status" => true,
+                "message" => "Post Berhasil Dihapus"
+            ], 200);
+        }else{
+            return response()->json([
+                "status" => false,
+                "message" => "Post Gagal Dihapus!"
+            ], 401);
+        }
+    }
 }
