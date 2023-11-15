@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post("/v1/posts/store", "App\Http\Controllers\api\\v1\PostsController@store");
 Route::get("/v1/posts", "App\Http\Controllers\api\\v1\PostsController@index");
 Route::get("v1/posts/{id}", "App\Http\Controllers\api\\v1\PostsController@show");
+Route::post("v1/posts/update", "App\Http\Controllers\api\\v1\PostsController@update");

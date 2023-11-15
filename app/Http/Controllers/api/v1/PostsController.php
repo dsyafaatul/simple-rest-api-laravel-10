@@ -73,4 +73,40 @@ class PostsController extends Controller
             ], 401);
         }
     }
+
+    public function update(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            "title" => "required",
+            "content" => "required"
+        ], [
+            "title.required" => "Masukan Title Post !",
+            "content.required" => "Masukan Content Post !"
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                "status" => false,
+                "message" => "Silahkan Isi Bidang Yang Kosong",
+                "data" => $validator->errors()
+            ], 401);
+        }else{
+            $post = Post::whereId($request->input("id"))->update([
+                "title" => $request->input("title"),
+                "content" => $request->input("content")
+            ]);
+            
+            if($post){
+                return response()->json([
+                    "status" => true,
+                    "message" => "Post Berhasil Diupdate!"
+                ], 200);
+            }else{
+                return response()->json([
+                    "status" => false,
+                    "message" => "Post Gagal Diupdate!",
+                ], 401);
+            }
+        }
+    }
 }
