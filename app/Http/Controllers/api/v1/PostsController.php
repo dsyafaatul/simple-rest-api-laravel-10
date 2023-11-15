@@ -9,6 +9,16 @@ use App\Models\Post;
 
 class PostsController extends Controller
 {
+    public function index()
+    {
+        $posts = Post::latest()->get();
+        return response()->json([
+            "status" => true,
+            "message" => "List Semua Posts",
+            "data" => $posts
+        ], 200);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
